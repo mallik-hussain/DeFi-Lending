@@ -1,0 +1,30 @@
+.wallet-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .wallet-button {
+    background-color: #1d4ed8;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    border: none;
+    font-size: 16px;
+  }
+  
+  .wallet-button:hover {
+    background-color: #1e40af;
+  }
+  
+  .wallet-connected {
+    background-color: #10b981;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  

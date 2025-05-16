@@ -1,0 +1,119 @@
+/* Reset and full black background */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Center the container */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20vh;
+  background: #000000;
+  color: white;
+  padding: 4rem;
+}
+
+/* Signup form box */
+.signup-form {
+  background: #1c1c2e;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  border: 2px solid #b23a8e;
+  box-shadow: 0px 4px 10px rgba(178, 58, 142, 0.3);
+  width: 100%;
+  max-width: 420px; /* smaller form width */
+  text-align: center;
+}
+
+/* Title */
+.signup-form h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #b23a8e;
+  margin-bottom: 0.8rem;
+  text-shadow: 0px 0px 8px rgba(178, 58, 142, 0.5);
+}
+
+/* Form groups */
+.signup-form .form-group {
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+/* Labels */
+.signup-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #d3c0de;
+}
+
+/* Inputs */
+.signup-form input {
+  width: 100%;
+  padding: 0.55rem;
+  border: 2px solid #7d5ba6;
+  border-radius: 8px;
+  background: #29293d;
+  color: white;
+  font-size: 0.9rem;
+  box-shadow: 0px 0px 4px rgba(125, 91, 166, 0.3);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.signup-form input::placeholder {
+  color: #bbbbbb;
+}
+
+.signup-form input:focus {
+  border-color: #b23a8e;
+  box-shadow: 0 0 7px rgba(178, 58, 142, 0.6);
+  outline: none;
+}
+
+/* Submit Button */
+.signup-form button {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: #7d5ba6;
+  color: white;
+  border: none;
+  box-shadow: 0px 0px 6px rgba(125, 91, 166, 0.5);
+  transition: background 0.3s, box-shadow 0.3s;
+  margin-top: 0.8rem;
+}
+
+.signup-form button:hover {
+  background: #674599;
+  box-shadow: 0px 0px 9px rgba(125, 91, 166, 0.7);
+}
+
+/* Paragraph */
+.signup-form p {
+  margin-top: 0.9rem;
+  color: #d3c0de;
+  font-size: 0.85rem;
+}
+
+/* Links */
+.signup-form p a {
+  color: #b23a8e;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.signup-form p a:hover {
+  color: #962b77;
+  text-decoration: underline;
+}

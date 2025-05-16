@@ -1,0 +1,80 @@
+/* Navbar Container */
+.navbar-container {
+  background: linear-gradient(to right, #3a0a5c, #610c42, #808080); /* Purple → Dark Pink → Grey */
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar Content */
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Brand Name */
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+/* Navbar Links */
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+  border-radius: 8px;
+}
+
+/* Hover Effect */
+.navbar-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Menu Button */
+.navbar-mobile-button {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .navbar-links.navbar-links-mobile {
+    display: flex;
+  }
+
+  .navbar-mobile-button {
+    display: block;
+  }
+}

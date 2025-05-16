@@ -1,0 +1,83 @@
+/* Center the container with a slight upward shift */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #121212; /* Dark background */
+    color: white;
+    padding: 1.5rem;
+  }
+  
+  /* Main Heading Styling */
+  .home-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #6240af; /* Purple */
+    margin-bottom: 1rem;
+    animation: fadeDown 0.5s ease-in-out;
+  }
+  
+  /* Subheading Styling */
+  .home-subtitle {
+    font-size: 1.25rem;
+    color: #bbbbbb;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+  
+  /* Feature Card Styling */
+  .feature-card {
+    background: #1E1E1E; /* Dark Grey Box */
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #4f4075; /* Purple Border */
+    box-shadow: 0px 4px 10px rgba(139, 92, 246, 0.3); /* Soft glow */
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+    animation: slideUp 0.5s ease-in-out;
+  }
+  
+  /* Feature List Styling */
+  .feature-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .feature-list li {
+    margin-bottom: 1rem;
+  }
+  
+  .feature-icon {
+    margin-right: 0.5rem;
+    color: #8B5CF6; /* Purple */
+  }
+  
+  /* Animations */
+  @keyframes fadeDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
