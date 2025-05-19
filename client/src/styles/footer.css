@@ -3,8 +3,7 @@
   background: linear-gradient(to right, #3a0a5c, #610c42, #808080); /* Purple → Dark Pink → Grey */
     color: white;
     text-align: center;
-    padding: 1rem;
-    margin-top: 10px;
+    padding: 0.5rem;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
   }
   

@@ -9,9 +9,11 @@ import SignIn from "./components/SignIn";
 import Home from "./pages/Home";
 import Deposit from "./pages/Deposit"; 
 import Loan from "./pages/Loan";
-import Invest from "./pages/Invest";
-import NFTs from "./pages/NFTs";
-import ConnectWallet from "./pages/ConnectWallet";
+import InvestNow from "./pages/InvestNow";
+import MyInvestments from "./pages/MyInvestments";
+import MyNft from "./pages/MyNft";
+import BuyNft from "./pages/BuyNft";
+import MintNft from "./pages/MintNft";
 import Dashboard from "./pages/Dashboard";
 
 const App = () => {
@@ -28,10 +30,12 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/deposit" element={<Deposit />} />
           <Route path="/loan" element={<Loan />} />
-          <Route path="/invest" element={<Invest />} />
-          <Route path="/nft" element={<NFTs />} />
+          <Route path="/invest" element={<InvestNow />} />
+          <Route path="/my-investments" element={<MyInvestments />} />
+          <Route path="/my-nft" element={<MyNft />} />
+          <Route path="/buy-nft" element={<BuyNft />} />
+          <Route path="/mint-nft" element={<MintNft />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/wallet" element={<ConnectWallet />} />
         </Routes>
       </div>
       <Footer />

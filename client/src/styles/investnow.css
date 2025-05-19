@@ -1,0 +1,83 @@
+/* Container Styling - Centered with dark background */
+.invest-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    background: #121212; /* Dark background */
+    color: white;
+}
+
+/* Card/Box Styling */
+.invest-card {
+    background: #1c1c2e; /* Deep Purple */
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid #b23a8e; /* Dark Pink Border */
+    box-shadow: 0px 4px 10px rgba(178, 58, 142, 0.3);
+    width: 50%;
+    text-align: center;
+}
+
+/* Header Styling */
+.invest-header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #b23a8e;
+    margin-bottom: 1rem;
+    text-shadow: 0px 0px 10px rgba(178, 58, 142, 0.5);
+}
+
+/* Form Fields */
+.form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    color: #bbbbbb;
+    margin-bottom: 0.5rem;
+}
+
+/* Inputs and Select */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    background: #1c1c2e;
+    color: white;
+    border: 2px solid #7d5ba6;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-shadow: 0px 0px 5px rgba(125, 91, 166, 0.3);
+}
+
+.form-group input::placeholder {
+    color: #bbbbbb;
+}
+
+/* Button Styling */
+.invest-button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #7d5ba6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 0px 5px rgba(125, 91, 166, 0.5);
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
+    margin-top: 1rem;
+}
+
+.invest-button:hover {
+    background: #674599;
+    box-shadow: 0px 0px 10px rgba(125, 91, 166, 0.7);
+}

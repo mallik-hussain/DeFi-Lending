@@ -1,8 +1,10 @@
 /* Navbar Container */
 .navbar-container {
   background: linear-gradient(to right, #3a0a5c, #610c42, #808080); /* Purple → Dark Pink → Grey */
-  padding: 1rem;
+  padding: 0rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 4px;
+  border-radius: 16px;
 }
 
 /* Navbar Content */
@@ -55,6 +57,48 @@
   width: 24px;
   height: 24px;
 }
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+/* The floating dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  min-width: 160px;
+  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Dropdown links */
+.dropdown-item {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Prevent navbar expanding when dropdown is shown */
+.navbar-links {
+  position: relative;
+}
+
+/* Optional: prevent navbar from wrapping due to dropdown */
+.navbar-link.dropdown {
+  white-space: nowrap;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
