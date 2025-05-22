@@ -8,7 +8,8 @@ import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import Home from "./pages/Home";
 import Deposit from "./pages/Deposit"; 
-import Loan from "./pages/Loan";
+import BorrowLoan from "./pages/BorrowLoan";
+import PayLoan from "./pages/PayLoan";
 import InvestNow from "./pages/InvestNow";
 import MyInvestments from "./pages/MyInvestments";
 import MyNft from "./pages/MyNft";
@@ -29,7 +30,8 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/home" element={<Home />} />
           <Route path="/deposit" element={<Deposit />} />
-          <Route path="/loan" element={<Loan />} />
+          <Route path="/borrow" element={<BorrowLoan />} />
+          <Route path="/payloan" element={<PayLoan />} />
           <Route path="/invest" element={<InvestNow />} />
           <Route path="/my-investments" element={<MyInvestments />} />
           <Route path="/my-nft" element={<MyNft />} />

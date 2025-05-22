@@ -98,4 +98,59 @@ export const deposit = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Deposit failed', error: err.message });
   }
+}
+
+export const borrowLoan = async (req, res) => {
+  const { amount } = req.body;
+  const userId = req.user.id;
+
+  if (!amount || amount <= 0) {
+    return res.status(400).json({ message: 'Invalid borrow amount' });
+  }
+
+  try {
+    const user = await User.findById(userId);
+    user.loan += Number(amount);
+    user.wallet += Number(amount); // add borrowed money to wallet
+    await user.save();
+
+    res.status(200).json({
+      message: `Borrowed $${amount} successfully`,
+      balance: user.wallet,
+      loan: user.loan,
+    });
+  } catch (err) {
+    res.status(500).json({ message: 'Borrowing failed', error: err.message });
+  }
 };
+
+// PAY LOAN
+export const payLoan = async (req, res) => {
+  const { amount } = req.body;
+  const userId = req.user.id;
+
+  if (!amount || amount <= 0) {
+    return res.status(400).json({ message: 'Invalid payment amount' });
+  }
+
+  try {
+    const user = await User.findById(userId);
+    if (!user || user.wallet < amount) {
+      return res.status(400).json({ message: 'Insufficient balance' });
+    }
+
+    const actualPayment = Math.min(amount, user.loan);
+
+    user.wallet -= actualPayment;
+    user.loan -= actualPayment;
+    await user.save();
+
+    res.status(200).json({
+      message: `Paid $${actualPayment} towards loan`,
+      balance: user.wallet,
+      loan: user.loan,
+    });
+  } catch (err) {
+    res.status(500).json({ message: 'Loan payment failed', error: err.message });
+  }
+};g

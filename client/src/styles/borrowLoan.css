@@ -1,0 +1,123 @@
+/* Container to center the borrow loan section */
+.borrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px; /* Space from navbar (adjust as needed) */
+    height: calc(90vh - 60px); /* Full viewport height minus navbar */
+    background: #121212;
+    color: white;
+}
+
+/* Main box styling */
+.borrow-box {
+    background: #1e2a38; /* Match pay-box background */
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid #b23a8e;
+    box-shadow: 0px 4px 10px rgba(178, 58, 142, 0.3);
+    text-align: center;
+    width: 100%;
+    max-width: 500px; /* Keep consistent max width */
+}
+
+/* Title */
+.borrow-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #b23a8e;
+    margin-bottom: 1rem;
+    text-shadow: 0px 0px 10px rgba(178, 58, 142, 0.5);
+}
+
+/* Input */
+.borrow-input {
+    width: 80%;
+    padding: 0.8rem;
+    border: 2px solid #7d5ba6;
+    border-radius: 8px;
+    background: #29293d;
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0px 0px 5px rgba(125, 91, 166, 0.3);
+}
+
+.borrow-input::placeholder {
+    color: #bbbbbb;
+}
+
+/* Buttons layout */
+.borrow-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Common button styles */
+.borrow-button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Specific buttons */
+.borrow-button-borrow {
+    background: #7d5ba6;
+    color: white;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(125, 91, 166, 0.5);
+}
+
+.borrow-button-borrow:hover {
+    background: #674599;
+    box-shadow: 0px 0px 10px rgba(125, 91, 166, 0.7);
+}
+
+.borrow-button-cancel {
+    background: #b23a8e;
+    color: white;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(178, 58, 142, 0.5);
+}
+
+.borrow-button-cancel:hover {
+    background: #962b77;
+    box-shadow: 0px 0px 10px rgba(178, 58, 142, 0.7);
+}
+
+.borrow-button-transactions {
+    background: #16a34a;
+    color: white;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(22, 163, 74, 0.4);
+}
+
+.borrow-button-transactions:hover {
+    background: #12803b;
+    box-shadow: 0px 0px 10px rgba(22, 163, 74, 0.6);
+}
+
+/* Shared container for side-by-side layout */
+.loan-sections {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 7rem;
+    padding: 0;
+    background: #121212;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .borrow-box,
+    .pay-box {
+        width: 90%;
+    }
+}
