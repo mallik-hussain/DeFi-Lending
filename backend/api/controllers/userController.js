@@ -153,4 +153,4 @@ export const payLoan = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Loan payment failed', error: err.message });
   }
-};g
+};
