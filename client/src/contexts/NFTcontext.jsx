@@ -37,21 +37,15 @@ export const NFTProvider = ({ children }) => {
     } catch (err) {
       toast.error("Connection failed");
       console.error(err);
-    } 
+    }
   };
 
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
 
-
-  const disconnectWallet = () => {
-    setConnectedAccount(null);
-  };
-
-
   return (
-    <NFTContext.Provider value={{ connectWallet, connectedAccount, disconnectWallet }}>
+    <NFTContext.Provider value={{ connectWallet, connectedAccount }}>
       {children}
     </NFTContext.Provider>
   );
