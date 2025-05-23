@@ -5,14 +5,14 @@ import { NFTContext } from '../contexts/NFTcontext';
 import "../styles/navbar.css";
 
 const Navbar = () => {
-  const { connectWallet, connectedAccount } = React.useContext(NFTContext);
+  const { connectWallet, connectedAccount, disconnectWallet } = React.useContext(NFTContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null); // "loan" | "invest" | "nft" | null
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
-  const dropdownRef = useRef(null); // will cover whole links container
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -21,17 +21,14 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    disconnectWallet();       // Clear connected wallet info on logout
     setIsAuthenticated(false);
     navigate("/signin");
   };
 
-  // Close dropdowns when clicking outside of the navbar links area
   useEffect(() => {
     function handleClickOutside(event) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setActiveDropdown(null);
       }
     }
@@ -63,14 +60,13 @@ const Navbar = () => {
 
         <div
           className={`navbar-links ${isOpen ? "navbar-links-mobile" : ""}`}
-          ref={dropdownRef}  // <-- attach ref here to cover all dropdowns
+          ref={dropdownRef}
         >
           {isAuthenticated && (
             <>
               <Link to="/home" className="navbar-link">Home</Link>
               <Link to="/deposit" className="navbar-link">Deposit</Link>
 
-              {/* LOAN DROPDOWN */}
               <div
                 className="navbar-link dropdown"
                 onClick={() => toggleDropdown("loan")}
@@ -85,7 +81,6 @@ const Navbar = () => {
                 )}
               </div>
 
-              {/* INVEST DROPDOWN */}
               <div
                 className="navbar-link dropdown"
                 onClick={() => toggleDropdown("invest")}
@@ -100,7 +95,6 @@ const Navbar = () => {
                 )}
               </div>
 
-              {/* NFT DROPDOWN */}
               <div
                 className="navbar-link dropdown"
                 onClick={() => toggleDropdown("nft")}
