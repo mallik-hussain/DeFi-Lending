@@ -48,7 +48,7 @@ const Navbar = () => {
   return (
     <nav className="navbar-container">
       <div className="navbar-content">
-        <Link to="/home" className="navbar-brand">DeFi Lending</Link>
+        <Link to="/home" className="navbar-brand">FINCRYPT</Link>
 
         <button
           className="navbar-mobile-button"

@@ -1,123 +1,100 @@
-/* Container to center the borrow loan section */
+/* Center the Borrow Loan section */
 .borrow-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 60px; /* Space from navbar (adjust as needed) */
-    height: calc(90vh - 60px); /* Full viewport height minus navbar */
-    background: #121212;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  height: calc(90vh - 60px);
+  background: transparent;
+  color: white;
 }
 
-/* Main box styling */
+/* Main Borrow Box */
 .borrow-box {
-    background: #1e2a38; /* Match pay-box background */
-    padding: 2rem;
-    border-radius: 12px;
-    border: 2px solid #b23a8e;
-    box-shadow: 0px 4px 10px rgba(178, 58, 142, 0.3);
-    text-align: center;
-    width: 100%;
-    max-width: 500px; /* Keep consistent max width */
+  background: rgba(1, 24, 20, 0.95);
+  padding: 2rem;
+  border-radius: 14px;
+  border: 2px solid #acebc2; /* Light green border */
+  box-shadow: 0px 4px 10px rgba(22, 163, 74, 0.3); /* Green glow */
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
 }
 
 /* Title */
 .borrow-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #b23a8e;
-    margin-bottom: 1rem;
-    text-shadow: 0px 0px 10px rgba(178, 58, 142, 0.5);
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fcfdfd;
+  margin-bottom: 1rem;
+  text-shadow: 0px 0px 10px rgba(22, 163, 74, 0.5);
 }
 
-/* Input */
+/* Input field */
 .borrow-input {
-    width: 80%;
-    padding: 0.8rem;
-    border: 2px solid #7d5ba6;
-    border-radius: 8px;
-    background: #29293d;
-    color: white;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0px 0px 5px rgba(125, 91, 166, 0.3);
+  width: 80%;
+  padding: 0.8rem;
+  border: 2px solid #05411b;
+  border-radius: 8px;
+  background: rgba(43, 71, 62, 0.2);
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0px 0px 5px rgba(13, 73, 35, 0.3);
 }
 
 .borrow-input::placeholder {
-    color: #bbbbbb;
+  color: #cccccc;
 }
 
-/* Buttons layout */
+/* Buttons container */
 .borrow-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-/* Common button styles */
+/* Common button style */
 .borrow-button {
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-shadow: 0px 0px 5px rgba(6, 43, 30, 0.1);
+  border: none;
+  background: #063116;
+  color: white;
+  box-shadow: 0px 0px 5px rgba(236, 248, 239, 0.5);
 }
 
-/* Specific buttons */
-.borrow-button-borrow {
-    background: #7d5ba6;
-    color: white;
-    border: none;
-    box-shadow: 0px 0px 5px rgba(125, 91, 166, 0.5);
+/* Hover for all buttons */
+.borrow-button:hover {
+  background: #22c55e;
+  box-shadow: 0px 0px 10px rgba(74, 222, 128, 0.7);
 }
 
-.borrow-button-borrow:hover {
-    background: #674599;
-    box-shadow: 0px 0px 10px rgba(125, 91, 166, 0.7);
-}
-
-.borrow-button-cancel {
-    background: #b23a8e;
-    color: white;
-    border: none;
-    box-shadow: 0px 0px 5px rgba(178, 58, 142, 0.5);
-}
-
-.borrow-button-cancel:hover {
-    background: #962b77;
-    box-shadow: 0px 0px 10px rgba(178, 58, 142, 0.7);
-}
-
-.borrow-button-transactions {
-    background: #16a34a;
-    color: white;
-    border: none;
-    box-shadow: 0px 0px 5px rgba(22, 163, 74, 0.4);
-}
-
-.borrow-button-transactions:hover {
-    background: #12803b;
-    box-shadow: 0px 0px 10px rgba(22, 163, 74, 0.6);
-}
-
-/* Shared container for side-by-side layout */
+/* Shared layout with PayLoan */
 .loan-sections {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 7rem;
-    padding: 0;
-    background: #121212;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 7rem;
+  padding: 0;
+  background: transparent;
+  flex-wrap: wrap;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
-    .borrow-box,
-    .pay-box {
-        width: 90%;
-    }
+  .borrow-box,
+  .pay-box {
+    width: 90%;
+  }
 }

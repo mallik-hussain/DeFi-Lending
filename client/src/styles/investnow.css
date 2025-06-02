@@ -1,83 +1,112 @@
-/* Container Styling - Centered with dark background */
+/* Center the Invest section */
 .invest-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 90vh;
-    background: #121212; /* Dark background */
-    color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  background: transparent;
+  color: white;
 }
 
 /* Card/Box Styling */
 .invest-card {
-    background: #1c1c2e; /* Deep Purple */
-    padding: 2rem;
-    border-radius: 12px;
-    border: 2px solid #b23a8e; /* Dark Pink Border */
-    box-shadow: 0px 4px 10px rgba(178, 58, 142, 0.3);
-    width: 50%;
-    text-align: center;
+  background: rgba(1, 24, 20, 0.95);
+  padding: 2rem;
+  border-radius: 14px;
+  border: 2px solid #acebc2; /* Light green border */
+  box-shadow: 0px 4px 10px rgba(22, 163, 74, 0.3); /* Green glow */
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
 }
 
 /* Header Styling */
 .invest-header h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #b23a8e;
-    margin-bottom: 1rem;
-    text-shadow: 0px 0px 10px rgba(178, 58, 142, 0.5);
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fcfdfd;
+  margin-bottom: 1rem;
+  text-shadow: 0px 0px 10px rgba(22, 163, 74, 0.5);
 }
 
 /* Form Fields */
 .form-group {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .form-group label {
-    font-size: 0.95rem;
-    color: #bbbbbb;
-    margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #bbbbbb;
+  margin-bottom: 0.5rem;
 }
 
 /* Inputs and Select */
 .form-group input,
 .form-group select {
-    width: 100%;
-    padding: 0.8rem;
-    background: #1c1c2e;
-    color: white;
-    border: 2px solid #7d5ba6;
-    border-radius: 8px;
-    font-size: 1rem;
-    box-shadow: 0px 0px 5px rgba(125, 91, 166, 0.3);
+  width: 100%;
+  padding: 0.8rem;
+  background: rgba(43, 71, 62, 0.2);
+  color: white;
+  border: 2px solid #05411b;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0px 0px 5px rgba(13, 73, 35, 0.3);
 }
 
 .form-group input::placeholder {
-    color: #bbbbbb;
+  color: #cccccc;
 }
 
 /* Button Styling */
 .invest-button {
-    width: 100%;
-    padding: 0.8rem;
-    background: #7d5ba6;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-    box-shadow: 0px 0px 5px rgba(125, 91, 166, 0.5);
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
-    margin-top: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  background: #063116;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0px 0px 5px rgba(236, 248, 239, 0.5);
+  text-shadow: 0px 0px 5px rgba(9, 77, 77, 0.1);
+  margin-top: 1rem;
 }
 
 .invest-button:hover {
-    background: #674599;
-    box-shadow: 0px 0px 10px rgba(125, 91, 166, 0.7);
+  background: #22c55e;
+  box-shadow: 0px 0px 10px rgba(74, 222, 128, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .invest-card {
+    width: 90%;
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #001f1f, #00332e);
+  background-size: 400% 400%;
+  animation: gradientFlow 20s ease infinite;
+  font-family: 'Inter', sans-serif;
+  color: white;
+}
+
+/* Optional: fade-in animation for sections */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
