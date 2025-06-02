@@ -1,12 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { ethers } from 'ethers';
 
 export const NFTContext = React.createContext();
 
 export const NFTProvider = ({ children }) => {
   const [connectedAccount, setConnectedAccount] = useState(null);
+  const [signer, setSigner] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [userBalance, setUserBalance] = useState(null); // optional
 
-  // Check for previously connected wallet silently (no popup)
+  // Setup provider and signer
+  const setupProviderAndSigner = async (account) => {
+    try {
+      const ethProvider = new ethers.providers.Web3Provider(window.ethereum);
+      const ethSigner = ethProvider.getSigner();
+
+      setProvider(ethProvider);
+      setSigner(ethSigner);
+
+      const balance = await ethProvider.getBalance(account);
+      setUserBalance(ethers.utils.formatEther(balance)); // optional
+
+      console.log("Provider & signer set. Balance:", ethers.utils.formatEther(balance));
+    } catch (err) {
+      console.error("Failed to set up provider and signer:", err);
+    }
+  };
+
   const checkIfWalletIsConnected = async () => {
     if (!window.ethereum) {
       toast.error("Please install MetaMask");
@@ -15,7 +36,9 @@ export const NFTProvider = ({ children }) => {
     try {
       const accounts = await window.ethereum.request({ method: 'eth_accounts' });
       if (accounts.length > 0) {
+        console.log("Wallet already connected:", accounts[0]);
         setConnectedAccount(accounts[0]);
+        await setupProviderAndSigner(accounts[0]);
       }
     } catch (err) {
       console.error(err);
@@ -23,7 +46,6 @@ export const NFTProvider = ({ children }) => {
     }
   };
 
-  // Trigger MetaMask popup on user action
   const connectWallet = async () => {
     if (!window.ethereum) {
       toast.error("Please install MetaMask");
@@ -32,8 +54,10 @@ export const NFTProvider = ({ children }) => {
     try {
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       if (accounts.length > 0) {
+        console.log("Wallet connected:", accounts[0]);
         setConnectedAccount(accounts[0]);
         toast.success("Wallet connected!");
+        await setupProviderAndSigner(accounts[0]);
       }
     } catch (err) {
       console.error(err);
@@ -41,35 +65,51 @@ export const NFTProvider = ({ children }) => {
     }
   };
 
-  // Manual disconnect (only clears local state)
   const disconnectWallet = () => {
     setConnectedAccount(null);
+    setSigner(null);
+    setProvider(null);
+    setUserBalance(null);
   };
 
   useEffect(() => {
+    console.log("NFTProvider mounted, checking wallet connection...");
     checkIfWalletIsConnected();
 
-    // Optional: Listen to account change and update state
+    const handleAccountsChanged = (accounts) => {
+      if (accounts.length > 0) {
+        setConnectedAccount(accounts[0]);
+        setupProviderAndSigner(accounts[0]);
+      } else {
+        disconnectWallet();
+      }
+    };
+
     if (window.ethereum) {
-      window.ethereum.on("accountsChanged", (accounts) => {
-        if (accounts.length > 0) {
-          setConnectedAccount(accounts[0]);
-        } else {
-          setConnectedAccount(null);
-        }
-      });
+      window.ethereum.on("accountsChanged", handleAccountsChanged);
     }
 
-    // Cleanup listeners
     return () => {
       if (window.ethereum?.removeListener) {
-        window.ethereum.removeListener("accountsChanged", () => {});
+        window.ethereum.removeListener("accountsChanged", handleAccountsChanged);
       }
     };
   }, []);
 
   return (
-    <NFTContext.Provider value={{ connectWallet, connectedAccount, disconnectWallet }}>
+    <NFTContext.Provider
+      value={{
+        connectWallet,
+        disconnectWallet,
+        connectedAccount,
+        signer,
+        provider,
+        user: {
+          address: connectedAccount,
+          wallet: userBalance, // Optional: `wallet` here means ETH balance
+        }
+      }}
+    >
       {children}
     </NFTContext.Provider>
   );
