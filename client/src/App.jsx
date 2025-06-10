@@ -17,10 +17,14 @@ import MyNft from "./pages/MyNft";
 import BuyNft from "./pages/BuyNft";
 import MintNft from "./pages/MintNft";
 import Dashboard from "./pages/Dashboard";
+import ChatbotEmbed from "./CHATBOTEMBED.JS";
 
 const AppContent = () => {
   const location = useLocation();
-  const hideHeaderFooter = location.pathname === "/signup" || location.pathname === "/" || location.pathname === "/signin";
+  const hideHeaderFooter =
+    location.pathname === "/signup" ||
+    location.pathname === "/" ||
+    location.pathname === "/signin";
 
   return (
     <>
@@ -44,8 +48,10 @@ const AppContent = () => {
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
-
+      
       {!hideHeaderFooter && <Footer />}
+      {!hideHeaderFooter && <ChatbotEmbed />}
+
     </>
   );
 };
