@@ -1,18 +1,25 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import '../styles/home.css';
 
+import {
+  FaWallet, FaPiggyBank, FaArrowDown, FaCoins, FaChartLine,
+  FaShoppingCart, FaPaintBrush, FaImage, FaTachometerAlt, FaPlug
+} from 'react-icons/fa';
+
 const cardData = [
-  { title: 'Deposit', color: '#F472B6', route: '/deposit' },       // Pink
-  { title: 'Borrow', color: '#F472B6', route: '/borrow' },         // Light Purple          // Soft Purple
-  { title: 'Pay Loan', color: '#F472B6', route: '/payloan' },     // Pink
-  { title: 'Invest Now', color: '#F472B6', route: '/invest' },     // Orchid Pink
-  { title: 'My Investment', color: '#F472B6', route: '/my-investments' }, // Light Grey
-  { title: 'BUY NFTs', color: '#F472B6', route: '/buy-nft' },     // Light Lavender
-  { title: 'MINT NFTs', color: '#F472B6', route: '/mint-nft' },       // Pinkish Grey
-  { title: 'MY NFTs', color: '#F472B6', route: '/my-nft' },   // Muted Grey
-  { title: 'Dashboard', color: '#F472B6', route: '/dashboard' },  
-  { title: 'Connect Wallet', color: '#F472B6', route: '/walletconnect' } // Purple
+  { title: 'Deposit', icon: <FaPiggyBank />, route: '/deposit' },
+  { title: 'Borrow', icon: <FaArrowDown />, route: '/borrow' },
+  { title: 'Pay Loan', icon: <FaCoins />, route: '/payloan' },
+  { title: 'Invest Now', icon: <FaChartLine />, route: '/invest' },
+  { title: 'My Investment', icon: <FaWallet />, route: '/my-investments' },
+  { title: 'BUY NFTs', icon: <FaShoppingCart />, route: '/buy-nft' },
+  { title: 'MINT NFTs', icon: <FaPaintBrush />, route: '/mint-nft' },
+  { title: 'MY NFTs', icon: <FaImage />, route: '/my-nft' },
+  { title: 'Dashboard', icon: <FaTachometerAlt />, route: '/dashboard' },
+  { title: 'Connect Wallet', icon: <FaPlug />, route: '/walletconnect' }
 ];
 
 const Home = () => {
@@ -22,17 +29,48 @@ const Home = () => {
     <div className="home-container">
       <div className="card-grid">
         {cardData.map((card, index) => (
-          <div
+          <AnimatedCard
             key={index}
-            className="card"
-            style={{ borderColor: card.color }}
+            icon={card.icon}
+            title={card.title}
             onClick={() => navigate(card.route)}
-          >
-            <span className="card-title" style={{ color: card.color }}>{card.title}</span>
-          </div>
+            index={index}
+          />
         ))}
       </div>
     </div>
+  );
+};
+
+const AnimatedCard = ({ icon, title, onClick, index }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+
+  const initialX = index % 2 === 0 ? -100 : 100;
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start({
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.6, ease: 'easeOut', delay: index * 0.1 }
+      });
+    }
+  }, [controls, inView, index]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className="card"
+      onClick={onClick}
+      initial={{ opacity: 0, x: initialX }}
+      animate={controls}
+      whileHover={{ scale: 1.05 }}
+      style={{ cursor: 'pointer' }}
+    >
+      <div className="card-icon">{icon}</div>
+      <span className="card-title">{title}</span>
+    </motion.div>
   );
 };
 

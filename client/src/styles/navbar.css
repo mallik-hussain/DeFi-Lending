@@ -31,6 +31,8 @@
   display: flex;
   gap: 1.5rem;
   position: relative; /* important for dropdown */
+  pointer-events: auto; /* enable clicks */
+  z-index: 100; /* stacking context */
 }
 
 .navbar-link {
@@ -66,6 +68,7 @@
 .dropdown {
   position: relative;
   cursor: pointer;
+  z-index: 1100; /* above navbar links */
 }
 
 /* The floating dropdown menu */
@@ -76,10 +79,10 @@
   background-color: #2e2e3a; /* Dark dropdown for dark theme */
   border: 1px solid #444;
   min-width: 160px;
-  z-index: 1100;
+  z-index: 1200; /* above dropdown container */
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  pointer-events: down;
   border-radius: 8px;
+  pointer-events: auto; /* make dropdown clickable */
 }
 
 /* Dropdown links */
@@ -89,6 +92,9 @@
   color: #ddd;
   text-decoration: none;
   transition: background-color 0.2s ease;
+  cursor: pointer;
+  background-color: transparent;
+  pointer-events: auto; /* clickable */
 }
 
 .dropdown-item:hover {
@@ -113,6 +119,8 @@
     width: 100%;
     padding: 1rem 0;
     text-align: center;
+    pointer-events: auto;
+    z-index: 2000; /* above all */
   }
 
   .navbar-links.navbar-links-mobile {

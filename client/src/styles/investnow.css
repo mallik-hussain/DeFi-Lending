@@ -1,84 +1,84 @@
-/* Center the Invest section */
+/* Overall container centering the invest card with animated background */
 .invest-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 90vh;
   background: transparent;
   color: white;
+  position: relative;
+  z-index: 0;
 }
 
-/* Card/Box Styling */
+/* Invest card with glassy green styling */
 .invest-card {
-  background: rgba(1, 24, 20, 0.95);
-  padding: 2rem;
+  background: rgba(1, 24, 20, 0.95); /* Dark green with opacity */
+  padding: 2rem 3rem;
   border-radius: 14px;
-  border: 2px solid #acebc2; /* Light green border */
-  box-shadow: 0px 4px 10px rgba(22, 163, 74, 0.3); /* Green glow */
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
+  border: 2px solid #acebc2;
+  box-shadow: 0px 4px 12px rgba(230, 247, 236, 0.3);
+  width: 45%;
   backdrop-filter: blur(6px);
   position: relative;
   z-index: 1;
 }
 
-/* Header Styling */
+/* Header title style */
 .invest-header h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
   color: #fcfdfd;
-  margin-bottom: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
   text-shadow: 0px 0px 10px rgba(22, 163, 74, 0.5);
 }
 
-/* Form Fields */
+/* Form group styling */
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 0.5rem;
 }
 
+/* Label styling */
 .form-group label {
-  font-size: 0.95rem;
-  color: #bbbbbb;
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #c8f3e2;
 }
 
-/* Inputs and Select */
+/* Input & Select fields */
 .form-group input,
 .form-group select {
   width: 100%;
   padding: 0.8rem;
-  background: rgba(43, 71, 62, 0.2);
-  color: white;
   border: 2px solid #05411b;
   border-radius: 8px;
+  background: rgba(43, 71, 62, 0.205);
+  color: white;
   font-size: 1rem;
   box-shadow: 0px 0px 5px rgba(13, 73, 35, 0.3);
 }
 
 .form-group input::placeholder {
-  color: #cccccc;
+  color: #bbbbbb;
 }
 
-/* Button Styling */
+/* Submit button */
 .invest-button {
   width: 100%;
-  padding: 0.8rem;
-  background: #063116;
-  color: white;
+  padding: 0.9rem;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  background: #063116;
+  color: white;
   font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-  box-shadow: 0px 0px 5px rgba(236, 248, 239, 0.5);
-  text-shadow: 0px 0px 5px rgba(9, 77, 77, 0.1);
+  font-size: 1rem;
   margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
 }
 
 .invest-button:hover {
@@ -86,26 +86,42 @@
   box-shadow: 0px 0px 10px rgba(74, 222, 128, 0.7);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .invest-card {
-    width: 90%;
-  }
-}
-
-html, body {
+/* Reuse animated background from deposit.css */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #001f1f, #00332e);
+  background: linear-gradient(-45deg, #04250d, #0c262b, #04312c, #063636);
   background-size: 400% 400%;
-  animation: gradientFlow 20s ease infinite;
-  font-family: 'Inter', sans-serif;
-  color: white;
+  animation: animatedBG 20s ease infinite;
+  z-index: -2;
 }
 
-/* Optional: fade-in animation for sections */
-@keyframes gradientFlow {
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(18, 69, 73, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Make sure all components are above background layers */
+html, body, * {
+  position: relative;
+  z-index: 0;
+}
+
+@keyframes animatedBG {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }

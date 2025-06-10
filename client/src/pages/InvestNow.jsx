@@ -6,6 +6,7 @@ import { URL } from '../utils/url';
 import { contractABI, contractAddress } from '../utils/contract';
 import { NFTContext } from '../contexts/NFTcontext';
 import { ethers } from 'ethers';
+import '../styles/investnow.css';
 
 const Invest = () => {
     const history = useNavigate();

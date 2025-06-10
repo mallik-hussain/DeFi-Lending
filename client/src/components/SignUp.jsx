@@ -22,6 +22,10 @@ const Signup = () => {
     password: '',
   });
 
+  const { username, fullname, email, password } = user;
+
+  const slideSpacing = 200; // pixels
+
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -46,19 +50,18 @@ const Signup = () => {
       {/* Fixed Header */}
       <div className="fincrypt-header">FINCRYPT</div>
 
-      {/* Scrollable Slides Container */}
+      {/* Scrollable Slides */}
       <div className="scroll-slides-container">
-        {/* Slide 1 */}
+        
+        {/* Slide 1 - Intro */}
         <section className="slide slide-1">
-          <h1>UNMASK THE FUTURE OF <br />
-           DECENTRALIZED FINANCE</h1>
+          <h1>UNMASK THE FUTURE OF <br />DECENTRALIZED FINANCE</h1>
           <p>
-            Experience decentralized finance with seamless functions such as Deposit,Loan,Invest and  NFT features—empowering users to 
-            control assets, earn yield, and explore Web3 opportunities in a secure, transparent, and borderless ecosystem.
+            Experience decentralized finance with seamless functions such as Deposit, Loan, Invest, and NFT features—empowering users to control assets, earn yield, and explore Web3 opportunities in a secure, transparent, and borderless ecosystem.
           </p>
         </section>
 
-        {/* Slide 2 - Signup Form (moved here) */}
+        {/* Slide 2 - Signup Form */}
         <section className="slide slide-2">
           <h2>Sign Up to Explore All</h2>
           <form className="signup-form" onSubmit={handleSubmit}>
@@ -66,84 +69,133 @@ const Signup = () => {
               <label htmlFor="username">Username</label>
               <input
                 type="text"
+                id="username"
                 name="username"
-                value={user.username}
+                value={username}
                 placeholder="Enter your username"
                 onChange={handleChange}
                 required
+                autoComplete="username"
               />
             </div>
             <div className="form-group">
               <label htmlFor="fullname">Full Name</label>
               <input
                 type="text"
+                id="fullname"
                 name="fullname"
-                value={user.fullname}
+                value={fullname}
                 placeholder="Enter your full name"
                 onChange={handleChange}
                 required
+                autoComplete="name"
               />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
                 type="email"
+                id="email"
                 name="email"
-                value={user.email}
+                value={email}
                 placeholder="Enter your email"
                 onChange={handleChange}
                 required
+                autoComplete="email"
               />
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
+                id="password"
                 name="password"
-                value={user.password}
+                value={password}
                 placeholder="Enter your password"
                 onChange={handleChange}
                 required
+                autoComplete="new-password"
               />
             </div>
             <button type="submit">Sign Up</button>
             <p>
-            Already have an account? <Link to="/signin">Sign In</Link>
-          </p>
+              Already have an account? <Link to="/signin">Sign In</Link>
+            </p>
           </form>
-          
         </section>
 
-        {/* Slide 3 */}
+        {/* Slide Spacing */}
+        <div style={{ height: `${slideSpacing}px` }}></div>
+
+        {/* Slide 3 - About Fincrypt */}
         <section className="slide slide-3">
-          <h2>About NFTNinja</h2>
-          <p>nftninja is a limited collection of 5,000 warriors.</p>
-          <div className="ninja-cards">
-            <div className="ninja-card">
-              <h3>🧩 Shadowfang #1729</h3>
-              <p>Never reflects light—and his presence is felt only after it’s too late.</p>
-              <p>Rarity Score: 8.7/10</p>
-            </div>
-            <div className="ninja-card">
-              <h3>🧩 Duskshard #0666</h3>
-              <p>Each ninja is uniquely crafted with rare traits and hidden power.</p>
-              <p>Rarity Score: 8.7/10</p>
-            </div>
-          </div>
+          <h2>About Fincrypt</h2>
+          <p>
+            Fincrypt is a next-generation decentralized finance (DeFi) platform built to redefine how users interact with financial services. By combining smart contract automation, NFT-based rewards, and transparent lending protocols, Fincrypt empowers users to lend, borrow, and earn in a trustless, permissionless environment. Our mission is to unmask the future of finance by putting control back into the hands of the community—secure, transparent, and borderless.
+          </p>
         </section>
 
-        {/* Slide 4 */}
+        {/* Slide Spacing */}
+        <div style={{ height: `${slideSpacing}px` }}></div>
+
+        {/* Slide 4 - Features & NFTs */}
         <section className="slide slide-4">
-          <h2>Unlock The Perks</h2>
-          <ul>
-            <li>🗡️ <strong>Collectible and Unique Ninjas:</strong> One of a kind — crafted with hundreds of traits.</li>
-            <li>🧠 <strong>Community Powered DAO:</strong> The rarer your ninja, the more access and rewards.</li>
-            <li>💰 <strong>Staking and $SHADOW Rewards:</strong> Earn as you hold, mint, and battle.</li>
-          </ul>
-          <button>Mint Your Ninja</button>
-        </section>
+  <h2>Features & Perks</h2>
+  <div className="feature-cards">
 
-        {/* Slide 5 */}
+    {/* Deposit Feature */}
+    <div className="feature-card">
+      <h3>💰 Deposit</h3>
+      <p>Effortlessly deposit your crypto assets into a secure virtual wallet to earn passive income.</p>
+      <ul>
+        <li>High-yield staking opportunities for deposited funds</li>
+        <li>Auto-compounding interest for maximized returns</li>
+        <li>Fully audited smart contract infrastructure</li>
+        <li>Instant wallet balance updates and transaction tracking</li>
+      </ul>
+    </div>
+
+    {/* Loan Feature */}
+    <div className="feature-card">
+      <h3>🏦 Loan</h3>
+      <p>Unlock instant liquidity through our decentralized lending system. Borrow and repay seamlessly.</p>
+      <ul>
+        <li>Borrow loans by pledging crypto as collateral</li>
+        <li>Flexible repayment options and real-time loan tracking</li>
+        <li>Pay off your loan anytime to retrieve your assets</li>
+        <li>Competitive and transparent interest rates</li>
+      </ul>
+    </div>
+
+    {/* Investment Feature */}
+    <div className="feature-card">
+      <h3>📈 Investment</h3>
+      <p>Grow your digital wealth through our DeFi investment module backed by smart contracts.</p>
+      <ul>
+        <li>Diversified crypto asset pools with yield optimization</li>
+        <li>Low-risk staking strategies with real-time ROI metrics</li>
+        <li>Decentralized governance over investment mechanisms</li>
+        <li>Secure and permissionless participation</li>
+      </ul>
+    </div>
+
+    {/* NFT Feature */}
+    <div className="feature-card">
+      <h3>🎴 NFT Utilities</h3>
+      <p>Each Ninja NFT unlocks exclusive perks in the ecosystem and carries unique digital attributes.</p>
+      <ul>
+        <li>On-chain rarity with a score of 8.7/10</li>
+        <li>Boosts staking rewards and reduces loan interest rates</li>
+        <li>Tradable on secondary marketplaces</li>
+        <li>Holders gain voting rights in protocol governance</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+        {/* Slide 5 - Shadow Economy */}
         <section className="slide slide-5">
           <h2>The Shadow Economy</h2>
           <div className="shadow-economy-grid">

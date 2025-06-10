@@ -53,7 +53,7 @@ body.no-navbar-footer .footer {
 
 /* Common Slide Styles */
 .slide {
-  height: 110vh;
+  height: 100vh;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -63,6 +63,28 @@ body.no-navbar-footer .footer {
   color: #fff;
   text-align: center;
   background: #0a2e2e; /* unified background */
+  margin-bottom: 200px; /* Add spacing between slides */
+}
+
+/* Adjust slide content positioning */
+.slide > * {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Adjust signup form positioning */
+.signup-form {
+  max-width: 400px;
+  width: 100%;
+  text-align: left;
+  background: rgba(4, 25, 22, 0.95);
+  padding: 1.2rem 1.4rem;
+  border-radius: 12px;
+  border: 1px solid #b4f5c4;
+  box-shadow: 0px 0px 12px rgba(9, 214, 60, 0.3);
+  backdrop-filter: blur(6px);
+  margin: 0 auto;
 }
 
 /* Remove individual backgrounds */
@@ -97,18 +119,6 @@ body.no-navbar-footer .footer {
   text-shadow: 0 0 10px rgba(20, 46, 26, 0.5);
 }
 
-.signup-form {
-  max-width: 400px;
-  width: 100%;
-  text-align: left;
-  background: rgba(4, 25, 22, 0.95); /* semi-transparent deep green */
-  padding: 1.2rem 1.4rem;
-  border-radius: 12px;
-  border: 1px solid #b4f5c4;
-  box-shadow: 0px 0px 12px rgba(9, 214, 60, 0.3);
-  backdrop-filter: blur(6px);
-}
-
 .form-group {
   margin-bottom: 1.2rem;
 }
@@ -117,7 +127,7 @@ body.no-navbar-footer .footer {
   display: block;
   margin-bottom: 0.4rem;
   font-weight: 700;
-  color: #1f4732; /* dark green */
+  color: #b4f5c4; /* light green for better contrast */
   font-size: 0.95rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -190,6 +200,91 @@ input:-webkit-autofill:focus {
   text-decoration: none;
 }
 
+/* Slide 4 Cards */
+.slide-4 h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-family: 'Dela Gothic One', sans-serif;
+  color: #f5f7f5;
+  text-shadow: 0 0 10px rgba(20, 46, 26, 0.5);
+}
+
+.feature-cards,
+.ninja-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+}
+
+.feature-card,
+.ninja-card {
+  background: rgba(4, 25, 22, 0.95);
+  border: 1px solid #b4f5c4;
+  border-radius: 12px;
+  padding: 1.5rem;
+  flex: 1 1 300px; /* Flex properties for responsive sizing */
+  max-width: 420px;
+  min-height: 320px; /* Ensure a minimum height */
+  text-align: left;
+  box-shadow: 0px 0px 12px rgba(9, 214, 60, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card:hover,
+.ninja-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 16px rgba(9, 214, 60, 0.5);
+}
+
+.feature-card h3,
+.ninja-card h3 {
+  font-family: 'Dela Gothic One', sans-serif;
+  color: #09d63c;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.feature-card p,
+.ninja-card p {
+  color: #e4fff4;
+  line-height: 1.6;
+  flex-grow: 1; /* Makes content area expand */
+}
+
+.feature-card ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  color: #b4f5c4;
+  flex-grow: 1;
+}
+
+.feature-card ul li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.feature-card ul li::before {
+  content: '✓';
+  color: #09d63c;
+  position: absolute;
+  left: 0;
+}
+
+.ninja-card p:last-of-type {
+  font-weight: bold;
+  color: #09d63c;
+  margin-top: 1rem;
+  flex-grow: 0; /* Prevents rarity score from expanding */
+  align-self: flex-start; /* Aligns to the bottom of the text flow */
+}
+
 .signup-form p a:hover {
   color: #12fa80;
   text-decoration: underline;
@@ -201,18 +296,26 @@ input:-webkit-autofill:focus {
   color: #1f4732 !important; /* dark green, your desired label color */
   transition: color 0.3s;
 }
+
 /* Slide 3 */
+.slide-3 {
+  background: #0a2e2e; /* unified background */
+}
+
 .slide-3 h2 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
+  font-family: 'Dela Gothic One', sans-serif;
+  color: #f5f7f5;
+  text-shadow: 0 0 10px rgba(20, 46, 26, 0.5);
 }
 
-.slide-3 ul {
-  max-width: 600px;
-  font-size: 1.125rem;
-  margin-bottom: 2rem;
+.slide-3 p {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
   line-height: 1.6;
-  text-align: left;
+  color: #a9f0d1;
 }
 
 .slide-3 button {
@@ -220,14 +323,117 @@ input:-webkit-autofill:focus {
   color: #fff;
   padding: 0.75rem 2rem;
   border-radius: 12px;
-  font-size: 1.125rem;
-  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
   border: none;
-  transition: background-color 0.3s;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .slide-3 button:hover {
-  background-color: #0f7463;
+  background-color: #09d63c;
+  transform: translateY(-2px);
+}
+
+/* Feature Cards */
+.feature-cards {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 1.5rem;
+}
+
+.feature-card {
+  flex: 1;
+  background: rgba(4, 25, 22, 0.95);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #b4f5c4;
+  text-align: left;
+  box-shadow: 0 0 12px rgba(9, 214, 60, 0.3);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 18px rgba(9, 214, 60, 0.4);
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  color: #09d63c;
+  margin-bottom: 1rem;
+  font-family: 'Dela Gothic One', sans-serif;
+}
+
+.feature-card p {
+  color: #a9f0d1;
+  margin-bottom: 1rem;
+}
+
+.feature-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-card li {
+  color: #a9f0d1;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.feature-card li::before {
+  content: '•';
+  color: #09d63c;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.ninja-cards {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 1.5rem;
+}
+
+.ninja-card {
+  background: rgba(4, 25, 22, 0.95);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #b4f5c4;
+  text-align: center;
+  width: 48%;
+  box-shadow: 0 0 12px rgba(9, 214, 60, 0.3);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.ninja-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 18px rgba(9, 214, 60, 0.4);
+}
+
+.ninja-card h3 {
+  font-size: 1.5rem;
+  color: #09d63c;
+  margin-bottom: 1rem;
+  font-family: 'Dela Gothic One', sans-serif;
+}
+
+.ninja-card p {
+  color: #a9f0d1;
+  margin-bottom: 1rem;
+}
+
+.ninja-card p:last-child {
+  margin-bottom: 0;
 }
 
 /* Slide 4 */
@@ -249,8 +455,6 @@ input:-webkit-autofill:focus {
   width: 100%;
 }
 
-
-
 /* Slide 5  */
 .slide-2 h2 {
   font-size: 2.5rem;
@@ -266,26 +470,6 @@ input:-webkit-autofill:focus {
   text-align: center;
 }
 
-.ninja-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  max-width: 900px;
-  width: 100%;
-}
-
-.ninja-card {
-  background-color: #112016;
-  border-radius: 1rem;
-  padding: 1rem;
-  box-shadow: 0 0 10px rgba(11, 73, 73, 0.5);
-}
-
-.ninja-card h3 {
-  font-weight: bold;
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
 
 
 /* Animations */
@@ -308,8 +492,6 @@ input:-webkit-autofill:focus {
     opacity: 1;
   }
 }
-
-
 
 /* Animated background gradient */
 body::after {
