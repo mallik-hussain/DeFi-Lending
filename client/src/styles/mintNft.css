@@ -1,0 +1,51 @@
+/* Mint NFT page styles */
+.mint-nft-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Animated background from deposit.css */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #04250d, #0c262b, #04312c, #063636);
+  background-size: 400% 400%;
+  animation: animatedBG 20s ease infinite;
+  z-index: -2;
+}
+
+/* Subtle grid overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(18, 69, 73, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Make sure all components sit above bg */
+html, body, * {
+  position: relative;
+  z-index: 0;
+}
+
+/* Background animation keyframes */
+@keyframes animatedBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

@@ -1,48 +1,90 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { NFTContext } from '../contexts/NFTcontext';
+import { NFTContext } from "../contexts/NFTcontext";
 import "../styles/navbar.css";
 
+const Dropdown = ({ label, name, activeDropdown, setActiveDropdown, navigate, children }) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setActiveDropdown(null);
+      }
+    };
+
+    if (activeDropdown === name) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [activeDropdown, name, setActiveDropdown]);
+
+  return (
+    <div className="navbar-link dropdown" ref={ref}>
+      <span
+        onClick={() => setActiveDropdown(activeDropdown === name ? null : name)}
+        aria-haspopup="true"
+        aria-expanded={activeDropdown === name}
+        tabIndex={0}
+        style={{ cursor: "pointer", userSelect: "none" }}
+        onKeyDown={e => {
+          if (e.key === "Enter" || e.key === " ") {
+            setActiveDropdown(activeDropdown === name ? null : name);
+          }
+        }}
+      >
+        {label} ▾
+      </span>
+
+      {activeDropdown === name && (
+        <div className="dropdown-menu" role="menu">
+          {React.Children.map(children, (child) => {
+            const to = child.props.to;
+            return (
+              <div
+                className="dropdown-item"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveDropdown(null);
+                  if (to && navigate) {
+                    navigate(to);
+                  }
+                }}
+              >
+                {child.props.children}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Navbar = () => {
-  const { connectWallet, connectedAccount } = React.useContext(NFTContext);
+  const { connectWallet, connectedAccount, disconnectWallet } = React.useContext(NFTContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null); // "loan" | "invest" | "nft" | null
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
-  const dropdownRef = useRef(null); // will cover whole links container
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsAuthenticated(!!token);
+    setIsOpen(false);
+    setActiveDropdown(null);
   }, [location.pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    disconnectWallet();
     setIsAuthenticated(false);
     navigate("/signin");
-  };
-
-  // Close dropdowns when clicking outside of the navbar links area
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
-        setActiveDropdown(null);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const toggleDropdown = (name) => {
-    setActiveDropdown(activeDropdown === name ? null : name);
   };
 
   const hideNavbarRoutes = ["/signup", "/signin"];
@@ -51,7 +93,7 @@ const Navbar = () => {
   return (
     <nav className="navbar-container">
       <div className="navbar-content">
-        <Link to="/home" className="navbar-brand">DeFi Lending</Link>
+        <Link to="/home" className="navbar-brand">FINCRYPT</Link>
 
         <button
           className="navbar-mobile-button"
@@ -61,71 +103,56 @@ const Navbar = () => {
           {isOpen ? <XMarkIcon className="navbar-icon" /> : <Bars3Icon className="navbar-icon" />}
         </button>
 
-        <div
-          className={`navbar-links ${isOpen ? "navbar-links-mobile" : ""}`}
-          ref={dropdownRef}  // <-- attach ref here to cover all dropdowns
-        >
+        <div className={`navbar-links${isOpen ? " navbar-links-mobile" : ""}`}>
           {isAuthenticated && (
             <>
-              <Link to="/home" className="navbar-link">Home</Link>
-              <Link to="/deposit" className="navbar-link">Deposit</Link>
+              <Link to="/home" className="navbar-link" onClick={() => setActiveDropdown(null)}>Home</Link>
+              <Link to="/deposit" className="navbar-link" onClick={() => setActiveDropdown(null)}>Deposit</Link>
 
-              {/* LOAN DROPDOWN */}
-              <div
-                className="navbar-link dropdown"
-                onClick={() => toggleDropdown("loan")}
-                style={{ position: 'relative', cursor: 'pointer' }}
+              <Dropdown
+                label="Loan"
+                name="loan"
+                activeDropdown={activeDropdown}
+                setActiveDropdown={setActiveDropdown}
+                navigate={navigate}
               >
-                <span>Loan ▾</span>
-                {activeDropdown === "loan" && (
-                  <div className="dropdown-menu">
-                    <Link to="/borrow" className="dropdown-item">Borrow Loan</Link>
-                    <Link to="/payloan" className="dropdown-item">Pay Loan</Link>
-                  </div>
-                )}
-              </div>
+                <span to="/borrow">Borrow Loan</span>
+                <span to="/payloan">Pay Loan</span>
+              </Dropdown>
 
-              {/* INVEST DROPDOWN */}
-              <div
-                className="navbar-link dropdown"
-                onClick={() => toggleDropdown("invest")}
-                style={{ position: 'relative', cursor: 'pointer' }}
+              <Dropdown
+                label="Invest"
+                name="invest"
+                activeDropdown={activeDropdown}
+                setActiveDropdown={setActiveDropdown}
+                navigate={navigate}
               >
-                <span>Invest ▾</span>
-                {activeDropdown === "invest" && (
-                  <div className="dropdown-menu">
-                    <Link to="/invest" className="dropdown-item">Invest Now</Link>
-                    <Link to="/my-investments" className="dropdown-item">My Investments</Link>
-                  </div>
-                )}
-              </div>
+                <span to="/invest">Invest Now</span>
+                <span to="/my-investments">My Investments</span>
+              </Dropdown>
 
-              {/* NFT DROPDOWN */}
-              <div
-                className="navbar-link dropdown"
-                onClick={() => toggleDropdown("nft")}
-                style={{ position: 'relative', cursor: 'pointer' }}
+              <Dropdown
+                label="NFT's"
+                name="nft"
+                activeDropdown={activeDropdown}
+                setActiveDropdown={setActiveDropdown}
+                navigate={navigate}
               >
-                <span>NFT's ▾</span>
-                {activeDropdown === "nft" && (
-                  <div className="dropdown-menu">
-                    <Link to="/my-nft" className="dropdown-item">My NFTs</Link>
-                    <Link to="/buy-nft" className="dropdown-item">Buy NFT</Link>
-                    <Link to="/mint-nft" className="dropdown-item">Mint NFT</Link>
-                  </div>
-                )}
-              </div>
+                <span to="/my-nft">My NFTs</span>
+                <span to="/buy-nft">Buy NFT</span>
+                <span to="/mint-nft">Mint NFT</span>
+              </Dropdown>
 
-              <Link to="/dashboard" className="navbar-link">Dashboard</Link>
+              <Link to="/dashboard" className="navbar-link" onClick={() => setActiveDropdown(null)}>Dashboard</Link>
 
               {!connectedAccount ? (
                 <button onClick={connectWallet} className="navbar-link">
                   Connect Wallet
                 </button>
               ) : (
-                <p className="navbar-link">
+                <span className="navbar-link" style={{ cursor: "default" }}>
                   {connectedAccount.substring(0, 6)}...{connectedAccount.slice(-4)}
-                </p>
+                </span>
               )}
 
               <button onClick={handleLogout} className="navbar-link">Logout</button>

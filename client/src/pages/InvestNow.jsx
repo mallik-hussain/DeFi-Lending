@@ -1,7 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { URL } from '../utils/url';
+import { contractABI, contractAddress } from '../utils/contract';
+import { NFTContext } from '../contexts/NFTcontext';
+import { ethers } from 'ethers';
 import '../styles/investnow.css';
 
+
+
 const Invest = () => {
+    const history = useNavigate();
+    const { connectedAccount, user, signer } = useContext(NFTContext); // Get signer from context
+
     const [invest, setInvest] = useState({
         coinName: 'Bitcoin',
         amount: '',
@@ -13,9 +25,64 @@ const Invest = () => {
         setInvest({ ...invest, [id]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert(`You selected ${invest.coinName} with amount $${invest.amount} for ${invest.duration} year(s).`);
+
+        try {
+            if (Number(invest.amount) <= 0 || Number(invest.duration) <= 0) {
+                toast.error('Please enter a valid amount and duration');
+                return;
+            }
+
+            if (!connectedAccount) {
+                toast.error('Please connect your wallet');
+                return;
+            }
+
+            if (!user || typeof user.wallet === 'undefined') {
+                toast.error('User wallet not loaded. Please wait and try again.');
+                return;
+            }
+
+            if (Number(user.wallet) < Number(invest.amount)) {
+                toast.error('Insufficient funds');
+                return;
+            }
+
+            if (!signer) {
+                toast.error('Wallet signer not available');
+                return;
+            }
+
+            // Initialize contract instance with signer
+            const contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+            // Convert amount to wei
+            const amountInWei = ethers.utils.parseEther(invest.amount.toString());
+
+            // Call smart contract's invest function
+            const tx = await contract.invest(invest.coinName, amountInWei, invest.duration);
+
+            toast.info('Transaction sent. Waiting for confirmation...');
+            await tx.wait();
+
+            // Send investment info to backend
+            const response = await axios.post(
+                `${URL}/user/invest`,
+                invest,
+                {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                }
+            );
+
+            if (response.status === 200) {
+                toast.success('Investment successful');
+                history('/invested');
+            }
+        } catch (error) {
+            toast.error('Error investing. See console for details.');
+            console.error('Error investing:', error);
+        }
     };
 
     const coinOptions = [

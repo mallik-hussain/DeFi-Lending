@@ -1,119 +1,542 @@
-/* Reset and full black background */
+/* Custom Font */
+@font-face {
+  font-family: 'Dela Gothic One';
+  src: url('../assets/fonts/DelaGothicOne-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Global Reset */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #000000;
+  background: #082924; /* single background for all */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
+  scroll-behavior: auto; /* handled in scroll container only */
 }
 
-/* Center the container */
-.signup-container {
+/* Hide navbar/footer in signup only */
+body.no-navbar-footer .navbar,
+body.no-navbar-footer .footer {
+  display: none !important;
+}
+
+/* Fixed FINCRYPT logo */
+.fincrypt-header {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #09d63c;
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+  user-select: none;
+  text-shadow: 0px 0px 8px rgba(7, 41, 16, 0.5);
+}
+
+/* Scrollable container */
+.scroll-slides-container {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.scroll-slides-container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Common Slide Styles */
+.slide {
+  height: 100vh;
+  scroll-snap-align: start;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 20vh;
-  background: #000000;
-  color: white;
-  padding: 4rem;
-}
-
-/* Signup form box */
-.signup-form {
-  background: #1c1c2e;
-  padding: 1rem 1.2rem;
-  border-radius: 12px;
-  border: 2px solid #b23a8e;
-  box-shadow: 0px 4px 10px rgba(178, 58, 142, 0.3);
-  width: 100%;
-  max-width: 420px; /* smaller form width */
+  padding: 2rem;
+  color: #fff;
   text-align: center;
+  background: #0a2e2e; /* unified background */
+  margin-bottom: 200px; /* Add spacing between slides */
 }
 
-/* Title */
-.signup-form h2 {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #b23a8e;
-  margin-bottom: 0.8rem;
-  text-shadow: 0px 0px 8px rgba(178, 58, 142, 0.5);
-}
-
-/* Form groups */
-.signup-form .form-group {
-  margin-bottom: 0.75rem;
-  text-align: left;
-}
-
-/* Labels */
-.signup-form label {
-  display: block;
-  margin-bottom: 0.3rem;
-  font-weight: 600;
-  color: #d3c0de;
-}
-
-/* Inputs */
-.signup-form input {
+/* Adjust slide content positioning */
+.slide > * {
+  max-width: 1000px;
   width: 100%;
-  padding: 0.55rem;
-  border: 2px solid #7d5ba6;
-  border-radius: 8px;
-  background: #29293d;
-  color: white;
-  font-size: 0.9rem;
-  box-shadow: 0px 0px 4px rgba(125, 91, 166, 0.3);
-  transition: border-color 0.3s, box-shadow 0.3s;
+  margin: 0 auto;
 }
 
-.signup-form input::placeholder {
-  color: #bbbbbb;
+/* Adjust signup form positioning */
+.signup-form {
+  max-width: 400px;
+  width: 100%;
+  text-align: left;
+  background: rgba(4, 25, 22, 0.95);
+  padding: 1.2rem 1.4rem;
+  border-radius: 12px;
+  border: 1px solid #b4f5c4;
+  box-shadow: 0px 0px 12px rgba(9, 214, 60, 0.3);
+  backdrop-filter: blur(6px);
+  margin: 0 auto;
 }
 
-.signup-form input:focus {
-  border-color: #b23a8e;
-  box-shadow: 0 0 7px rgba(178, 58, 142, 0.6);
+/* Remove individual backgrounds */
+.slide-1 { animation-delay: 0.2s; }
+.slide-2 { animation-delay: 0.4s; }
+.slide-3 { animation-delay: 0.6s; }
+.slide-4 { animation-delay: 0.8s; }
+.slide-5 { animation-delay: 1s; }
+
+/* Slide 1 */
+.slide-1 h1 {
+  font-size: 5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-family: 'Della Gothic One', serif;
+  line-height: 1.1;
+}
+
+.slide-1 p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  font-family: 'Della Gothic One', serif;
+  margin-bottom: 2rem;
+}
+
+
+.slide-2 h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Dela Gothic One', sans-serif;
+  color: #f5f7f5;
+  text-shadow: 0 0 10px rgba(20, 46, 26, 0.5);
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+  color: #b4f5c4; /* light green for better contrast */
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+  background: transparent;
+  border: none;
+  box-shadow: none;
   outline: none;
 }
 
-/* Submit Button */
+.form-group input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 2px solid #184630; /* green border */
+  font-size: 0.95rem;
+  background-color: #0f1f1d;
+  color: #e4fff4;
+  box-shadow: 0px 0px 6px rgba(13, 255, 145, 0.15);
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #144d22; /* darker green */
+  box-shadow: 0 0 8px rgba(9, 214, 60, 0.5);
+  outline: none;
+  background-color: #0f1f1d;
+}
+
+/* Fix Chrome autofill purple background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  box-shadow: 0 0 0px 1000px #0f1f1d inset !important; /* matches input bg */
+  -webkit-text-fill-color: #e4fff4 !important; /* text color */
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
 .signup-form button {
   width: 100%;
-  padding: 0.6rem;
+  background-color: #0dbf73;
+  color: #0c6e14;
+  padding: 0.65rem;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  background: #7d5ba6;
-  color: white;
   border: none;
-  box-shadow: 0px 0px 6px rgba(125, 91, 166, 0.5);
+  box-shadow: 0px 0px 10px rgba(13, 191, 115, 0.4);
   transition: background 0.3s, box-shadow 0.3s;
   margin-top: 0.8rem;
 }
 
 .signup-form button:hover {
-  background: #674599;
-  box-shadow: 0px 0px 9px rgba(125, 91, 166, 0.7);
+  background-color: #09d63c;
+  box-shadow: 0px 0px 14px rgba(9, 214, 60, 0.6);
 }
 
-/* Paragraph */
 .signup-form p {
-  margin-top: 0.9rem;
-  color: #d3c0de;
+  margin-top: 1rem;
+  color: #a9f0d1;
   font-size: 0.85rem;
+  text-align: center;
 }
 
-/* Links */
 .signup-form p a {
-  color: #b23a8e;
+  color: #09d63c;
   font-weight: 600;
   text-decoration: none;
-  transition: color 0.3s;
+}
+
+/* Slide 4 Cards */
+.slide-4 h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-family: 'Dela Gothic One', sans-serif;
+  color: #f5f7f5;
+  text-shadow: 0 0 10px rgba(20, 46, 26, 0.5);
+}
+
+.feature-cards,
+.ninja-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+}
+
+.feature-card,
+.ninja-card {
+  background: rgba(4, 25, 22, 0.95);
+  border: 1px solid #b4f5c4;
+  border-radius: 12px;
+  padding: 1.5rem;
+  flex: 1 1 300px; /* Flex properties for responsive sizing */
+  max-width: 420px;
+  min-height: 320px; /* Ensure a minimum height */
+  text-align: left;
+  box-shadow: 0px 0px 12px rgba(9, 214, 60, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card:hover,
+.ninja-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 16px rgba(9, 214, 60, 0.5);
+}
+
+.feature-card h3,
+.ninja-card h3 {
+  font-family: 'Dela Gothic One', sans-serif;
+  color: #09d63c;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.feature-card p,
+.ninja-card p {
+  color: #e4fff4;
+  line-height: 1.6;
+  flex-grow: 1; /* Makes content area expand */
+}
+
+.feature-card ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  color: #b4f5c4;
+  flex-grow: 1;
+}
+
+.feature-card ul li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.feature-card ul li::before {
+  content: '✓';
+  color: #09d63c;
+  position: absolute;
+  left: 0;
+}
+
+.ninja-card p:last-of-type {
+  font-weight: bold;
+  color: #09d63c;
+  margin-top: 1rem;
+  flex-grow: 0; /* Prevents rarity score from expanding */
+  align-self: flex-start; /* Aligns to the bottom of the text flow */
 }
 
 .signup-form p a:hover {
-  color: #962b77;
+  color: #12fa80;
   text-decoration: underline;
+}
+
+.signin-form label,
+.signin-form label:focus,
+.signin-form label:hover {
+  color: #1f4732 !important; /* dark green, your desired label color */
+  transition: color 0.3s;
+}
+
+/* Slide 3 */
+.slide-3 {
+  background: #0a2e2e; /* unified background */
+}
+
+.slide-3 h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Dela Gothic One', sans-serif;
+  color: #f5f7f5;
+  text-shadow: 0 0 10px rgba(20, 46, 26, 0.5);
+}
+
+.slide-3 p {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #a9f0d1;
+}
+
+.slide-3 button {
+  background-color: #126b37;
+  color: #fff;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.slide-3 button:hover {
+  background-color: #09d63c;
+  transform: translateY(-2px);
+}
+
+/* Feature Cards */
+.feature-cards {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 1.5rem;
+}
+
+.feature-card {
+  flex: 1;
+  background: rgba(4, 25, 22, 0.95);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #b4f5c4;
+  text-align: left;
+  box-shadow: 0 0 12px rgba(9, 214, 60, 0.3);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 18px rgba(9, 214, 60, 0.4);
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  color: #09d63c;
+  margin-bottom: 1rem;
+  font-family: 'Dela Gothic One', sans-serif;
+}
+
+.feature-card p {
+  color: #a9f0d1;
+  margin-bottom: 1rem;
+}
+
+.feature-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-card li {
+  color: #a9f0d1;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.feature-card li::before {
+  content: '•';
+  color: #09d63c;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.ninja-cards {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 1.5rem;
+}
+
+.ninja-card {
+  background: rgba(4, 25, 22, 0.95);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #b4f5c4;
+  text-align: center;
+  width: 48%;
+  box-shadow: 0 0 12px rgba(9, 214, 60, 0.3);
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.ninja-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 18px rgba(9, 214, 60, 0.4);
+}
+
+.ninja-card h3 {
+  font-size: 1.5rem;
+  color: #09d63c;
+  margin-bottom: 1rem;
+  font-family: 'Dela Gothic One', sans-serif;
+}
+
+.ninja-card p {
+  color: #a9f0d1;
+  margin-bottom: 1rem;
+}
+
+.ninja-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Slide 4 */
+.slide-4 {
+  text-align: left;
+}
+
+.slide-4 h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.shadow-economy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Slide 5  */
+.slide-2 h2 {
+  font-size: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.slide-2 p {
+  max-width: 600px;
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  text-align: center;
+}
+
+
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animated background gradient */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #04250d, #0c262b, #04312c, #063636);
+  background-size: 400% 400%;
+  animation: animatedBG 20s ease infinite;
+  z-index: -2;
+}
+
+/* Subtle grid overlay on top of background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(18, 69, 73, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Keep page elements above animations/grid */
+html, body, * {
+  position: relative;
+  z-index: 0;
+}
+
+@keyframes animatedBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

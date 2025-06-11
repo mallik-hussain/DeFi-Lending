@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import '../styles/mintNft.css';
 
 const MintNft = () => {
   return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <p style={{ color: '#000000', fontSize: '2rem' }}>Get A nft for free</p>
+    <div className="mint-nft-container">
+      <p style={{ fontSize: '2rem' }}>Get A NFT for free</p>
     </div>
   );
-}
+};
 
-export default MintNft
+export default MintNft;

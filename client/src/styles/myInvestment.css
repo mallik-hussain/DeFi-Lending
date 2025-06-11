@@ -1,55 +1,82 @@
+/* Container */
 .invest-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 4rem 2rem;
-    min-height: 100vh;
-    background-color: #121212;
-    color: white;
-    font-family: 'Roboto Mono', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  min-height: 100vh;
+  background-color: #06291c;
+  color: white;
+  font-family: 'Roboto Mono', monospace;
 }
 
+/* Title */
 .invest-title {
-    font-size: 2.5rem;
-    color: #b23a8e;
-    margin-bottom: 2rem;
-    text-shadow: 0 0 10px rgba(178, 58, 142, 0.5);
+  font-size: 2.5rem;
+  color: #16a34a; /* Green */
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px rgba(22, 163, 74, 0.5);
 }
 
+/* Empty State Text */
 .invest-empty {
-    font-size: 1.2rem;
-    color: #cccccc;
+  font-size: 1.2rem;
+  color: #cccccc;
 }
 
+/* Table Wrapper */
 .invest-table-container {
-    overflow-x: auto;
-    width: 100%;
-    max-width: 800px;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 800px;
 }
 
+/* Table */
 .invest-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #1c1c2e;
-    border: 2px solid #b23a8e;
-    box-shadow: 0 4px 10px rgba(178, 58, 142, 0.3);
-    border-radius: 12px;
-    overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #0e493c; /* Dark slate like deposit box */
+  border: 2px solid #16a34a; /* Green border */
+  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
+/* Table Cells */
 .invest-table th,
 .invest-table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid #333;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #083f41;
 }
 
+/* Table Header */
 .invest-table th {
-    background-color: #2e2e3f;
-    color: #b23a8e;
-    font-weight: bold;
+  background-color: #0b3f3b;
+  color: #16a34a;
+  font-weight: bold;
 }
 
+/* Hover Effect */
 .invest-table tr:hover {
-    background-color: #2a2a3d;
+  background-color: #2a2a3d;
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #001f1f, #00332e);
+  background-size: 400% 400%;
+  animation: gradientFlow 20s ease infinite;
+  font-family: 'Inter', sans-serif;
+  color: white;
+}
+
+/* Optional: fade-in animation for sections */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

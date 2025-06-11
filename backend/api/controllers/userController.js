@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import Invest from '../models/Invest.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 export const registerUser = async (req, res) => {
@@ -153,4 +154,74 @@ export const payLoan = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Loan payment failed', error: err.message });
   }
-};g
+};
+
+export const invest = async (req, res) => {
+    try {
+        const { coinName, amount, duration } = req.body;
+        if (!coinName || !amount || !duration) {
+            return res.status(400).json({
+                status: 'false',
+                message: 'Please fill all fields'
+            })
+        }
+        const user = await User.findOne({ _id: req.user.id });
+        if (!user) {
+            return res.status(400).json({
+                status: 'false',
+                message: 'User do not exist'
+            })
+        }
+        if (user.wallet < amount) {
+            return res.status(400).json({
+                status: 'false',
+                message: 'Insufficient funds'
+            })
+        }
+        user.wallet -= amount;
+        await user.save();
+        const invest = new Invest({
+            userId: req.user.id,
+            coinName,
+            amount,
+            duration
+        })
+        invest.save();
+        return res.status(200).json({
+            status: 'success',
+            message: 'Investment successful'
+        })
+    }
+    catch (err) {
+        return res.status(400).json({
+            status: 'false',
+            message: err.message
+        })
+    }
+};
+
+// Add this to userController.js
+export const getDashboard = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const investments = await Invest.find({ userId: req.user.id });
+    const cryptoInvestment = investments
+      .filter(i => i.coinName)  // assuming all are crypto
+      .reduce((acc, i) => acc + i.amount, 0);
+
+    const restInvestment = 0; // Add logic if needed
+
+    res.json({
+      userName: user.fullName,     
+      email: user.email,
+      wallet: user.wallet,
+      loan: user.loan,
+      cryptoInvestment,
+      restInvestment
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

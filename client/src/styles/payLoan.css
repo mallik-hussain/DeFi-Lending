@@ -1,41 +1,101 @@
-/* Container to center the pay loan section */
+/* Pay Loan Section Container */
 .payloan-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2px;
-    height: 90vh;
-    background: #121212;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  height: 90vh;
+  background: transparent;
+  color: white;
+  position: relative;
+  z-index: 0;
 }
 
-/* Main box styling */
+/* Pay Box */
 .pay-box {
-    background: #1e2a38;
-    padding: 2rem;
-    border-radius: 12px;
-    border: 2px solid #b23a8e;
-    box-shadow: 0px 4px 10px rgba(56, 163, 178, 0.3);
-    text-align: center;
-    width: 100%;
-    max-width: 500px; /* Ensures it doesn't stretch too wide */
+  background: rgba(1, 24, 20, 0.95); /* Semi-transparent dark green */
+  padding: 2rem;
+  border-radius: 14px;
+  border: 2px solid #acebc2; /* Mint green */
+  box-shadow: 0px 4px 10px rgba(22, 163, 74, 0.3); /* Green glow */
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
 }
 
-/* If using this for shared layout with borrow section */
+/* Title Styling (reuse from deposit theme) */
+.lend-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-shadow: 0px 0px 10px rgba(22, 163, 74, 0.5);
+}
+
+/* Input Field */
+.pay-input {
+  width: 80%;
+  padding: 0.8rem;
+  border: 2px solid #05411b;
+  border-radius: 8px;
+  background: rgba(43, 71, 62, 0.2);
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0px 0px 5px rgba(13, 73, 35, 0.3);
+}
+
+.pay-input::placeholder {
+  color: #cccccc;
+}
+
+/* Buttons Group */
+.pay-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Shared Pay Buttons Styling */
+.pay-button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  text-shadow: 0px 0px 5px rgba(11, 134, 114, 0.671);
+  border: none;
+  background: #063116;
+  color: white;
+  box-shadow: 0px 0px 5px rgba(236, 248, 239, 0.5);
+}
+
+.pay-button:hover {
+  background: #22c55e;
+  box-shadow: 0px 0px 10px rgba(74, 222, 128, 0.7);
+}
+
+/* Layout with Borrow Section (optional) */
 .loan-sections {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 7rem;
-    padding: 0;
-    background: #121212;
-    flex-wrap: wrap; /* Responsive layout */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 7rem;
+  padding: 0;
+  background: transparent;
+  flex-wrap: wrap;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
-    .borrow-box,
-    .pay-box {
-        width: 90%; /* Full width on small screens */
-    }
+  .borrow-box,
+  .pay-box {
+    width: 90%;
+  }
 }

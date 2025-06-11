@@ -1,83 +1,247 @@
-/* Container Styling - Centered with dark background */
+/* Overall container with animated background */
 .invest-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 90vh;
-    background: #121212; /* Dark background */
-    color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* center vertically */
+  min-height: 90vh;
+  padding: 2rem;
+  color: #ffffff;
+  background: transparent;
+  position: relative;
+  z-index: 1000;
 }
 
-/* Card/Box Styling */
+/* Animated background */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #04250d, #0c262b, #04312c, #063636);
+  background-size: 400% 400%;
+  animation: animatedBG 20s ease infinite;
+  z-index: -2;
+}
+
+/* Subtle grid overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(18, 69, 73, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Ensure all content is above background */
+body {
+  position: relative;
+  z-index: 1;
+}
+
+/* Wallet connect modal */
+.wallet-connect-modal {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 1002 !important;
+  background: #101111 !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+  width: 90% !important;
+  max-width: 500px !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* Wallet connect modal content */
+.wallet-connect-modal-content {
+  position: relative !important;
+  z-index: 1002 !important;
+}
+
+/* Clean card styling with glowing effect */
 .invest-card {
-    background: #1c1c2e; /* Deep Purple */
-    padding: 2rem;
-    border-radius: 12px;
-    border: 2px solid #b23a8e; /* Dark Pink Border */
-    box-shadow: 0px 4px 10px rgba(178, 58, 142, 0.3);
-    width: 50%;
-    text-align: center;
+  background-color: #101111;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #f2f7f4;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); /* green glow box shadow */
 }
 
-/* Header Styling */
+/* Glowing border effect */
+.invest-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(34, 197, 94, 0.1) 50%,
+    transparent 100%
+  );
+  animation: glowingBorder 10s infinite;
+  z-index: -1;
+}
+
+/* Background animation keyframes */
+@keyframes animatedBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glowing border animation */
+@keyframes glowingBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Header section */
+.invest-header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
 .invest-header h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #b23a8e;
-    margin-bottom: 1rem;
-    text-shadow: 0px 0px 10px rgba(178, 58, 142, 0.5);
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(22, 163, 74, 0.6); /* glowing text */
 }
 
-/* Form Fields */
+.invest-header p {
+  font-size: 1rem;
+  color: #b2f0d6;
+}
+
+/* Form body */
+.invest-body {
+  width: 100%;
+}
+
+/* Each form field */
 .form-group {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-    font-size: 0.95rem;
-    color: #bbbbbb;
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
 }
 
-/* Inputs and Select */
 .form-group input,
 .form-group select {
-    width: 100%;
-    padding: 0.8rem;
-    background: #1c1c2e;
-    color: white;
-    border: 2px solid #7d5ba6;
-    border-radius: 8px;
-    font-size: 1rem;
-    box-shadow: 0px 0px 5px rgba(125, 91, 166, 0.3);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ffffff;
+  background-color: #163124;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
 .form-group input::placeholder {
-    color: #bbbbbb;
+  color: #bbbbbb;
 }
 
-/* Button Styling */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #1ba34a;
+  outline: none;
+}
+
+/* Submit button */
 .invest-button {
-    width: 100%;
-    padding: 0.8rem;
-    background: #7d5ba6;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-    box-shadow: 0px 0px 5px rgba(125, 91, 166, 0.5);
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
-    margin-top: 1rem;
+  width: 100%;
+  max-width: 250px;
+  margin: 1rem auto 0;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  background-color: #075724;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: block;
 }
 
+/* Hover effect: fixed for better visibility */
 .invest-button:hover {
-    background: #674599;
-    box-shadow: 0px 0px 10px rgba(125, 91, 166, 0.7);
+  background-color: #22c55e;
+  color: #ffffff;
+}
+
+/* Success and error messages with improved visibility */
+.success-message,
+.error-message {
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 1001; /* Above navbar */
+}
+
+.success-message {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.error-message {
+  background-color: rgba(255, 68, 68, 0.1);
+  color: #ff4444;
+  border: 1px solid rgba(255, 68, 68, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .invest-card {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .invest-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.7rem;
+  }
+
+  .invest-button {
+    font-size: 1rem;
+    padding: 0.75rem 1.2rem;
+  }
 }
