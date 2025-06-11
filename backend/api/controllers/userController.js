@@ -199,3 +199,29 @@ export const invest = async (req, res) => {
         })
     }
 };
+
+// Add this to userController.js
+export const getDashboard = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const investments = await Invest.find({ userId: req.user.id });
+    const cryptoInvestment = investments
+      .filter(i => i.coinName)  // assuming all are crypto
+      .reduce((acc, i) => acc + i.amount, 0);
+
+    const restInvestment = 0; // Add logic if needed
+
+    res.json({
+      userName: user.fullName,     
+      email: user.email,
+      wallet: user.wallet,
+      loan: user.loan,
+      cryptoInvestment,
+      restInvestment
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

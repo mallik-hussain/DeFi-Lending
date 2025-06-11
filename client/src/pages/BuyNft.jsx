@@ -1,9 +1,10 @@
 import React from 'react';
+import '../styles/buyNft.css';
 
 const BuyNft = () => {
   return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <p style={{ color: '#000000', fontSize: '2rem' }}>Buy A NFT</p>
+    <div className="buy-nft-container">
+      <p style={{ fontSize: '2rem' }}>Buy A NFT</p>
     </div>
   );
 };

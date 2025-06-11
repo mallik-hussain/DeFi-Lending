@@ -29,7 +29,14 @@ const AppContent = () => {
   return (
     <>
       {!hideHeaderFooter && <Navbar />}
-      <ToastContainer position="top-right" autoClose={3000} style={{ zIndex: 9999 }} />
+      <div className="toast-wrapper">
+        <ToastContainer 
+          position="top-right" 
+          autoClose={3000} 
+          style={{ zIndex: 99999 }}
+          className="toast-container"
+        />
+      </div>
 
       <div className="min-h-screen">
         <Routes>

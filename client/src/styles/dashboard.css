@@ -1,0 +1,122 @@
+/* DASHBOARD CONTAINER */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 90vh;
+  padding-top: 1.5rem; /* Reduced top padding */
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: #ffffff;
+  background: transparent;
+  z-index: 1;
+}
+
+/* WELCOME TITLE */
+.dashboard-title {
+  font-size: 3rem; /* Slightly larger */
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem; /* Reduced spacing below heading */
+  text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.4);
+}
+
+/* USER INFO BOX */
+.dashboard-info-box {
+  border: 2px solid #acebc2;
+  border-radius: 14px;
+  box-shadow: 0px 4px 12px rgba(173, 255, 193, 0.2);
+  padding: 2rem;
+  width: 60%;
+  text-align: left;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease-in-out;
+  margin-top: 0rem; /* No extra top margin */
+}
+
+.dashboard-info-box:hover {
+  box-shadow: 0px 0px 20px rgba(74, 222, 128, 0.5);
+}
+
+/* INDIVIDUAL INFO ROW */
+.dashboard-info-row {
+  font-size: 1.2rem; /* Slightly larger text */
+  margin-bottom: 1rem;
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.15);
+}
+
+.dashboard-info-label {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* ACTION BUTTONS */
+.dashboard-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dashboard-button {
+  padding: 0.75rem 1.5rem;
+  background: #063116;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0px 0px 6px rgba(234, 255, 240, 0.4);
+}
+
+.dashboard-button:hover {
+  background: #22c55e;
+  box-shadow: 0px 0px 12px rgba(74, 222, 128, 0.7);
+}
+
+/* Background animated gradient */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #04250d, #0c262b, #04312c, #063636);
+  background-size: 400% 400%;
+  animation: animatedBG 20s ease infinite;
+  z-index: -2;
+}
+
+/* Subtle grid overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(18, 69, 73, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Maintain component layering above bg */
+html, body, * {
+  position: relative;
+  z-index: 0;
+}
+
+/* Background animation */
+@keyframes animatedBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

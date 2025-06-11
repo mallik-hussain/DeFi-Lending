@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import '../styles/myNft.css';
 
 const NFTs = () => {
- return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <p style={{ color: '#000000', fontSize: '2rem' }}>MyNFT to be shwon here</p>
+  return (
+    <div className="my-nft-container">
+      <p style={{ fontSize: '2rem' }}>My NFTs to be shown here</p>
     </div>
   );
-}
+};
 
-export default NFTs
+export default NFTs;

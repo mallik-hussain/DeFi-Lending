@@ -8,6 +8,8 @@ import { NFTContext } from '../contexts/NFTcontext';
 import { ethers } from 'ethers';
 import '../styles/investnow.css';
 
+
+
 const Invest = () => {
     const history = useNavigate();
     const { connectedAccount, user, signer } = useContext(NFTContext); // Get signer from context

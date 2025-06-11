@@ -9,7 +9,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <NFTProvider>
     <App />
-    <ToastContainer />
+    <ToastContainer autoClose={3000} />
     </NFTProvider>
   </StrictMode>,
 )

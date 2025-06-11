@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NFTContext } from "../contexts/NFTcontext";
 import "../styles/navbar.css";
 
-const Dropdown = ({ label, name, activeDropdown, setActiveDropdown, children }) => {
+const Dropdown = ({ label, name, activeDropdown, setActiveDropdown, navigate, children }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const Dropdown = ({ label, name, activeDropdown, setActiveDropdown, children }) 
         setActiveDropdown(null);
       }
     };
-    
+
     if (activeDropdown === name) {
       document.addEventListener("mousedown", handleClickOutside);
     }
@@ -21,11 +21,6 @@ const Dropdown = ({ label, name, activeDropdown, setActiveDropdown, children }) 
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [activeDropdown, name, setActiveDropdown]);
-
-  const handleItemClick = (e) => {
-    e.stopPropagation();
-    setActiveDropdown(null);
-  };
 
   return (
     <div className="navbar-link dropdown" ref={ref}>
@@ -43,15 +38,25 @@ const Dropdown = ({ label, name, activeDropdown, setActiveDropdown, children }) 
       >
         {label} ▾
       </span>
+
       {activeDropdown === name && (
-        <div className="dropdown-menu" role="menu" onClick={handleItemClick}>
-          {React.Children.map(children, child => {
-            return React.cloneElement(child, {
-              onClick: (e) => {
-                if (child.props.onClick) child.props.onClick(e);
-                handleItemClick(e);
-              }
-            });
+        <div className="dropdown-menu" role="menu">
+          {React.Children.map(children, (child) => {
+            const to = child.props.to;
+            return (
+              <div
+                className="dropdown-item"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveDropdown(null);
+                  if (to && navigate) {
+                    navigate(to);
+                  }
+                }}
+              >
+                {child.props.children}
+              </div>
+            );
           })}
         </div>
       )}
@@ -82,7 +87,6 @@ const Navbar = () => {
     navigate("/signin");
   };
 
-  // Hide navbar on auth pages
   const hideNavbarRoutes = ["/signup", "/signin"];
   if (hideNavbarRoutes.includes(location.pathname)) return null;
 
@@ -110,9 +114,10 @@ const Navbar = () => {
                 name="loan"
                 activeDropdown={activeDropdown}
                 setActiveDropdown={setActiveDropdown}
+                navigate={navigate}
               >
-                <Link to="/borrow" className="dropdown-item">Borrow Loan</Link>
-                <Link to="/payloan" className="dropdown-item">Pay Loan</Link>
+                <span to="/borrow">Borrow Loan</span>
+                <span to="/payloan">Pay Loan</span>
               </Dropdown>
 
               <Dropdown
@@ -120,9 +125,10 @@ const Navbar = () => {
                 name="invest"
                 activeDropdown={activeDropdown}
                 setActiveDropdown={setActiveDropdown}
+                navigate={navigate}
               >
-                <Link to="/invest" className="dropdown-item">Invest Now</Link>
-                <Link to="/my-investments" className="dropdown-item">My Investments</Link>
+                <span to="/invest">Invest Now</span>
+                <span to="/my-investments">My Investments</span>
               </Dropdown>
 
               <Dropdown
@@ -130,10 +136,11 @@ const Navbar = () => {
                 name="nft"
                 activeDropdown={activeDropdown}
                 setActiveDropdown={setActiveDropdown}
+                navigate={navigate}
               >
-                <Link to="/my-nft" className="dropdown-item">My NFTs</Link>
-                <Link to="/buy-nft" className="dropdown-item">Buy NFT</Link>
-                <Link to="/mint-nft" className="dropdown-item">Mint NFT</Link>
+                <span to="/my-nft">My NFTs</span>
+                <span to="/buy-nft">Buy NFT</span>
+                <span to="/mint-nft">Mint NFT</span>
               </Dropdown>
 
               <Link to="/dashboard" className="navbar-link" onClick={() => setActiveDropdown(null)}>Dashboard</Link>
